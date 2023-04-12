@@ -6,7 +6,7 @@
 
 struct obat{
     int kode;
-    char nama[30];
+    char nama[30],jenis[20], pabrik[30], tanggal[11];
     int stok;
     float harga;
 }o[50];
@@ -48,7 +48,7 @@ void login()
         printf("%c", 254);
         Sleep (10);
     }
-    printf("\n);
+    printf("\n");
     gotoxy(50,7);
 
     printf("Harap Login Terlebih Dahulu\n");
@@ -130,7 +130,7 @@ void tambah_obat()
     for (i = 0; i < banyak_obat; i++)
     {
         gotoxy(35, 8);
-        printf(("Data obat ke-%d\n", i + 1);
+        printf("Data obat ke-%d\n", i + 1);
         gotoxy(35, 9);
         printf("Masukkan kode obat: ");
         scanf("%d",&kode);
@@ -342,4 +342,5 @@ int main()
         }
     }while(choice!=7);
     return 0;
+}
 }
