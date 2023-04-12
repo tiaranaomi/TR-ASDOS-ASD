@@ -111,7 +111,57 @@ void login()
         login();
     }
 }
-
+ 
+void tambah_obat()
+{
+    int i, kode, stok, banyak_obat;
+    float harga;
+    char nama[30], jenis[20], pabrik[30];
+    char tanggal[11];
+    
+    system("cls");
+    gotoxy(50, 4);
+    printf("TAMBAH DATA OBAT");
+    printf("\n");
+    gotoxy(35,6);
+    printf("Masukkan banyak data : ");
+    scanf("%d", &banyak_obat);
+    
+    for (i = 0; i < banyak_obat; i++)
+    {
+        gotoxy(35, 8);
+        printf(("Data obat ke-%d\n", i + 1);
+        gotoxy(35, 9);
+        printf("Masukkan kode obat: ");
+        scanf("%d",&kode);
+        printf("Masukkan nama obat: ");
+        scanf("%s",nama);
+        printf("Masukkan jenis obat : ");
+        scanf("%s", &jenis);
+        printf("Masukkan pabrik obat : ");
+        scanf("%s", &pabrik);
+        printf("Masukkan tanggal masuk (dd/mm/yyyy) : ");
+        scanf("%s", &tanggal);
+        printf("Masukkan stok obat: ");
+        scanf("%d",&stok);
+        printf("Masukkan harga obat: ");
+        scanf("%f",&harga);
+        
+        o[i].kode=kode;
+        strcpy(o[i].nama,nama);
+        strcpy(o[i].jenis, jenis);
+        strcpy(o[i].pabrik, pabrik);
+        strcpy(o[i].tanggal, tanggal);
+        o[i].stok=stok;
+        o[i].harga=harga;
+               
+        printf("Data obat berhasil ditambahkan\n");
+    }
+    if (i == banyak_obat)
+    {
+        printf("Maaf, sudah mencapai batas maksimal obat yang tersimpan");
+}
+       
 void cari_obat()
 {
 int kode,i;
@@ -225,88 +275,71 @@ o[j].harga=harga;
 printf("Data obat berhasil diurutkan berdasarkan kode obat\n");
 }
 
-void tambah_obat()
-{
-int i,kode,stok;
-float harga;
-char nama[30];
-for(i=0;i<50;i++)
-{
-if(o[i].kode==0)
-{
-
-printf("Masukkan kode obat: ");
-scanf("%d",&kode);
-printf("Masukkan nama obat: ");
-scanf("%s",nama);
-printf("Masukkan stok obat: ");
-scanf("%d",&stok);
-printf("Masukkan harga obat: ");
-scanf("%f",&harga);
-o[i].kode=kode;
-strcpy(o[i].nama,nama);
-o[i].stok=stok;
-o[i].harga=harga;
-printf("Data obat berhasil ditambahkan\n");
-break;
-}
-}
-if(i==50)
-printf("Maaf, sudah mencapai batas maksimal obat yang tersimpan");
-}
-
 int main()
 {
-int choice;
-login(); //memanggil fungsi login
-do
-{
-system("cls"); //membersihkan layar
-printf("\n\n\t\t\t\tMENU UTAMA\n");
-printf("\t\t1. Cari data obat\n");
-printf("\t\t2. Lihat data obat\n");
-printf("\t\t3. Ubah data obat\n");
-printf("\t\t4. Hapus data obat\n");
-printf("\t\t5. Urutkan data obat\n");
-printf("\t\t6. Tambah data obat\n");
-printf("\t\t7. Keluar\n");
-printf("\n\t\tMasukkan pilihan: ");
-scanf("%d",&choice);
-switch(choice)
-{
-case 1:
-cari_obat();
-getch();
-break;
-case 2:
-lihat_obat();
-getch();
-break;
-case 3:
-ubah_obat();
-getch();
-break;
-case 4:
-hapus_obat();
-getch();
-break;
-case 5:
-urutkan_obat();
-getch();
-break;
-case 6:
-tambah_obat();
-getch();
-break;
-case 7:
-printf("\n\nTerima kasih telah menggunakan program ini!");
-getch();
-break;
-default:
-printf("\n\nMaaf, pilihan yang anda masukkan salah. Silakan coba lagi.");
-getch();
-break;
-}
-}while(choice!=7);
-return 0;
+    int choice;
+    login(); //memanggil fungsi login
+    do
+    {
+        system ("color CE");
+        system("cls"); //membersihkan layar
+        printf("\n");
+        gotoxy(44, 5);
+        printf("SELAMAT DATANG DI APOTEK TADIKA MESRA\n");
+        gotoxy (57,7);
+        printf("MENU UTAMA\n");
+        gotoxy(51, 8);
+        printf("1. Tambah data obat\n");
+        gotoxy(51, 9);
+        printf("2. Lihat data obat\n");
+        gotoxy(51, 10);
+        printf("3. Ubah data obat\n");
+        gotoxy(51, 11);
+        printf("4. Hapus data obat\n");
+        gotoxy(51, 12);
+        printf("5. Urutkan data obat\n");
+        gotoxy(51, 13);
+        printf("6. Cari data obat\n");
+        gotoxy(51, 14);
+        printf("7. Keluar\n");
+        gotoxy(51, 15);
+        printf("\n\t\tMasukkan pilihan: ");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:
+                tambah_obat();
+                getch();
+                break;
+            case 2:
+                lihat_obat();
+                getch();
+                break;
+            case 3:
+                ubah_obat();
+                getch();
+                break;
+            case 4:
+                hapus_obat();
+                getch();
+                break;
+            case 5:
+                urutkan_obat();
+                getch();
+                break;
+            case 6:
+                cari_obat();
+                getch();
+                break;
+            case 7:
+                printf("\n\nTerima kasih telah menggunakan program ini!");
+                getch();
+                break;
+            default:
+                printf("\n\nMaaf, pilihan yang anda masukkan salah. Silakan coba lagi.");
+                getch();
+                break;
+        }
+    }while(choice!=7);
+    return 0;
 }
