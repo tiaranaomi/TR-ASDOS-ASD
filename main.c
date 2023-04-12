@@ -1,20 +1,29 @@
 #include<stdio.h>
 #include<string.h>
 #include<conio.h>
+#include<windows.h>
+#include<time.h>
 
 struct obat{
-int kode;
-char nama[30];
-int stok;
-float harga;
+    int kode;
+    char nama[30];
+    int stok;
+    float harga;
 }o[50];
+
+void gotoxy(int x, int y){
+    COORD coord;
+    coord.X = x;
+    coord.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
 
 void login()
 {
-char username[10];
-char password[10];
-int i;
-for(i=1; i <= 15; i++) // Perulangan kotak loading 15
+    char username[10];
+    char password[10];
+    int i;
+    for(i=1; i <= 15; i++) // Perulangan kotak loading 15
     {
         printf("%c", 254); // Kode tampilan kotak
         Sleep (5);
@@ -39,35 +48,68 @@ for(i=1; i <= 15; i++) // Perulangan kotak loading 15
         printf("%c", 254);
         Sleep (10);
     }
+    printf("\n);
+    gotoxy(50,7);
 
-printf("\n|             Harap Login Terlebih Dahulu             |\n");
-printf("|                                                     |\n");
-printf("  Masukkan username : ");
-scanf("%s", username);
-printf("  Masukkan password : ");
-for(i=0;i<6;i++)
+    printf("Harap Login Terlebih Dahulu\n");
+    gotoxy(40,9);
+    printf("Masukkan username : ");
+    scanf("%s", username);
+    gotoxy(40,10);
+    printf("Masukkan password : ");
+           
+    for(i=0;i<6;i++);
+    {
+        password[i]=getch();
+        printf("*");
+    }
+    printf("\n");
+    gotoxy(35,12);
+    for(i=1; i <= 15; i++) // Perulangan kotak loading 15
+    {
+        printf("%c", 254); // Kode tampilan kotak
+        Sleep (10);
+    }
+    for(i=1; i <= 10; i++) // Perulangan kotak loading 15
+    {
+        printf("%c", 254);
+        Sleep (10);
+    }
+    for(i=1; i <= 10; i++) // Perulangan kotak loading 15
+    {
+        printf("%c", 254);
+        Sleep (10);
+    }
+    for(i=1; i <= 10; i++) // Perulangan kotak loading 15
+    {
+        printf("%c", 254);
+        Sleep (10);
+    }
+    for(i=1; i <= 10; i++) // Perulangan kotak loading 17
+    {
+        printf("%c", 254);
+        Sleep (10);
+    }      
+           
+    password[i]='\0';
 
-{
-password[i]=getch();
-printf("*");
-}
-printf("\n|                                                     |\n");
-printf("|                                                     |\n");
-password[i]='\0';
-
-if(strcmp(username,"admin")==0 && strcmp(password,"cantik")==0)
-{
-printf("\n          SELAMAT DATANG DI APOTEK TADIKA MESRA ");
-getch();
-system("cls");
-}
-else
-{
-printf("\n           LOGIN GAGAL! SILAKAN COBA LAGI");
-getch();
-system("cls");
-login();
-}
+    if(strcmp(username,"admin")==0 && strcmp(password,"cantik")==0)
+    {
+        printf("\n");
+        gotoxy(55,14);
+        printf("~~LOGIN BERHASIL~~");
+        getch();
+        system("cls");
+    }
+    else
+    {
+        printf("\n");
+        gotoxy(57,14);
+        printf("LOGIN GAGAL! SILAKAN COBA LAGI");
+        getch();
+        system("cls");
+        login();
+    }
 }
 
 void cari_obat()
